@@ -316,6 +316,7 @@
     <Content Include="fontawesome\scss\_stacked.scss" />
     <Content Include="fontawesome\scss\_variables.scss" />
     <Content Include="Scripts\jquery-1.11.2.js" />
+    <Content Include="bdscript.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
