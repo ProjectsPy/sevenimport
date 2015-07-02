@@ -1,0 +1,681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="importModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Skype" Type="nvarchar" MaxLength="100" />
+          <Property Name="IdMarca" Type="int" />
+        </EntityType>
+        <EntityType Name="empresa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" />
+          <Property Name="Logo" Type="image" />
+        </EntityType>
+        <EntityType Name="imageMarca">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Imagen" Type="varbinary(max)" />
+          <Property Name="IdMarca" Type="int" />
+        </EntityType>
+        <EntityType Name="marcas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Logo" Type="image" />
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="partners">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" />
+          <Property Name="Logo" Type="image" />
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="IdCategory" Type="int" Nullable="false" />
+          <Property Name="Image" Type="image" />
+          <Property Name="IdMarca" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="quienes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tittle" Type="nvarchar" MaxLength="20" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="Image" Type="image" />
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="slider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Link" Type="nvarchar" MaxLength="150" />
+          <Property Name="IdMarca" Type="int" />
+        </EntityType>
+        <EntityType Name="socials">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" />
+          <Property Name="font" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="link" Type="nvarchar" MaxLength="150" />
+          <Property Name="IdMarca" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_contact_marcas">
+          <End Role="marcas" Type="Self.marcas" Multiplicity="0..1" />
+          <End Role="contact" Type="Self.contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marcas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="contact">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_emp_who_empresa1">
+          <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+          <End Role="quienes" Type="Self.quienes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="quienes">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_imageMarca_marcas">
+          <End Role="marcas" Type="Self.marcas" Multiplicity="0..1" />
+          <End Role="imageMarca" Type="Self.imageMarca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marcas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="imageMarca">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_marcas_empresa">
+          <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+          <End Role="marcas" Type="Self.marcas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="marcas">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_partners_empresa">
+          <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+          <End Role="partners" Type="Self.partners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="partners">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_marcas">
+          <End Role="marcas" Type="Self.marcas" Multiplicity="1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marcas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_services_empresa">
+          <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+          <End Role="services" Type="Self.services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="services">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_slider_marcas">
+          <End Role="marcas" Type="Self.marcas" Multiplicity="0..1" />
+          <End Role="slider" Type="Self.slider" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marcas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="slider">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_socials_marcas">
+          <End Role="marcas" Type="Self.marcas" Multiplicity="1" />
+          <End Role="socials" Type="Self.socials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marcas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="socials">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="importModelStoreContainer">
+          <EntitySet Name="contact" EntityType="Self.contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empresa" EntityType="Self.empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="imageMarca" EntityType="Self.imageMarca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="marcas" EntityType="Self.marcas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="partners" EntityType="Self.partners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="quienes" EntityType="Self.quienes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="services" EntityType="Self.services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="slider" EntityType="Self.slider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="socials" EntityType="Self.socials" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_contact_marcas" Association="Self.FK_contact_marcas">
+            <End Role="marcas" EntitySet="marcas" />
+            <End Role="contact" EntitySet="contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_emp_who_empresa1" Association="Self.FK_emp_who_empresa1">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="quienes" EntitySet="quienes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_imageMarca_marcas" Association="Self.FK_imageMarca_marcas">
+            <End Role="marcas" EntitySet="marcas" />
+            <End Role="imageMarca" EntitySet="imageMarca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_marcas_empresa" Association="Self.FK_marcas_empresa">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="marcas" EntitySet="marcas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_partners_empresa" Association="Self.FK_partners_empresa">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="partners" EntitySet="partners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_marcas" Association="Self.FK_products_marcas">
+            <End Role="marcas" EntitySet="marcas" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_services_empresa" Association="Self.FK_services_empresa">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="services" EntitySet="services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_slider_marcas" Association="Self.FK_slider_marcas">
+            <End Role="marcas" EntitySet="marcas" />
+            <End Role="slider" EntitySet="slider" />
+          </AssociationSet>
+          <AssociationSet Name="FK_socials_marcas" Association="Self.FK_socials_marcas">
+            <End Role="marcas" EntitySet="marcas" />
+            <End Role="socials" EntitySet="socials" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="importModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Skype" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdMarca" Type="Int32" />
+          <NavigationProperty Name="marca" Relationship="importModel.FK_contact_marcas" FromRole="contact" ToRole="marca" />
+        </EntityType>
+        <EntityType Name="empresa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="marcas" Relationship="Self.FK_marcas_empresa" FromRole="empresa" ToRole="marcas" />
+          <NavigationProperty Name="services" Relationship="importModel.FK_services_empresa" FromRole="empresa" ToRole="service" />
+          <NavigationProperty Name="partners" Relationship="importModel.FK_partners_empresa" FromRole="empresa" ToRole="partner" />
+          <NavigationProperty Name="quienes" Relationship="importModel.FK_emp_who_empresa11" FromRole="empresa" ToRole="quiene" />
+        </EntityType>
+        <EntityType Name="marca">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="empresa" Relationship="Self.FK_marcas_empresa" FromRole="marcas" ToRole="empresa" />
+          <NavigationProperty Name="products" Relationship="Self.FK_products_marcas" FromRole="marcas" ToRole="products" />
+          <NavigationProperty Name="contacts" Relationship="importModel.FK_contact_marcas" FromRole="marca" ToRole="contact" />
+          <NavigationProperty Name="socials" Relationship="importModel.FK_socials_marcas" FromRole="marca" ToRole="social" />
+          <NavigationProperty Name="sliders" Relationship="importModel.FK_slider_marcas" FromRole="marca" ToRole="slider" />
+          <NavigationProperty Name="imageMarcas" Relationship="importModel.FK_imageMarca_marcas" FromRole="marca" ToRole="imageMarca" />
+        </EntityType>
+        <EntityType Name="partner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="empresa" Relationship="importModel.FK_partners_empresa" FromRole="partner" ToRole="empresa" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCategory" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdMarca" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="marca" Relationship="Self.FK_products_marcas" FromRole="products" ToRole="marcas" />
+        </EntityType>
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="empresa" Relationship="importModel.FK_services_empresa" FromRole="service" ToRole="empresa" />
+        </EntityType>
+        <EntityType Name="social">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="font" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="link" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IdMarca" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="marca" Relationship="importModel.FK_socials_marcas" FromRole="social" ToRole="marca" />
+        </EntityType>
+        <Association Name="FK_marcas_empresa">
+          <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+          <End Role="marcas" Type="Self.marca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="marcas">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_marcas">
+          <End Role="marcas" Type="Self.marca" Multiplicity="1" />
+          <End Role="products" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marcas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="importEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="contacts" EntityType="Self.contact" />
+          <EntitySet Name="empresas" EntityType="Self.empresa" />
+          <EntitySet Name="marcas" EntityType="Self.marca" />
+          <EntitySet Name="partners" EntityType="Self.partner" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <EntitySet Name="services" EntityType="Self.service" />
+          <EntitySet Name="socials" EntityType="Self.social" />
+          <AssociationSet Name="FK_marcas_empresa" Association="Self.FK_marcas_empresa">
+            <End Role="empresa" EntitySet="empresas" />
+            <End Role="marcas" EntitySet="marcas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_marcas" Association="Self.FK_products_marcas">
+            <End Role="marcas" EntitySet="marcas" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contact_marcas" Association="importModel.FK_contact_marcas">
+            <End Role="marca" EntitySet="marcas" />
+            <End Role="contact" EntitySet="contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_socials_marcas" Association="importModel.FK_socials_marcas">
+            <End Role="marca" EntitySet="marcas" />
+            <End Role="social" EntitySet="socials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_services_empresa" Association="importModel.FK_services_empresa">
+            <End Role="empresa" EntitySet="empresas" />
+            <End Role="service" EntitySet="services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_partners_empresa" Association="importModel.FK_partners_empresa">
+            <End Role="empresa" EntitySet="empresas" />
+            <End Role="partner" EntitySet="partners" />
+          </AssociationSet>
+          <EntitySet Name="quienes" EntityType="importModel.quiene" />
+          <AssociationSet Name="FK_emp_who_empresa11" Association="importModel.FK_emp_who_empresa11">
+            <End Role="empresa" EntitySet="empresas" />
+            <End Role="quiene" EntitySet="quienes" />
+          </AssociationSet>
+          <EntitySet Name="sliders" EntityType="importModel.slider" />
+          <AssociationSet Name="FK_slider_marcas" Association="importModel.FK_slider_marcas">
+            <End Role="marca" EntitySet="marcas" />
+            <End Role="slider" EntitySet="sliders" />
+          </AssociationSet>
+          <EntitySet Name="imageMarcas" EntityType="importModel.imageMarca" />
+          <AssociationSet Name="FK_imageMarca_marcas" Association="importModel.FK_imageMarca_marcas">
+            <End Role="marca" EntitySet="marcas" />
+            <End Role="imageMarca" EntitySet="imageMarcas" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_contact_marcas">
+          <End Type="importModel.marca" Role="marca" Multiplicity="0..1" />
+          <End Type="importModel.contact" Role="contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marca">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="contact">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_socials_marcas">
+          <End Type="importModel.marca" Role="marca" Multiplicity="1" />
+          <End Type="importModel.social" Role="social" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marca">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="social">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_services_empresa">
+          <End Type="importModel.empresa" Role="empresa" Multiplicity="1" />
+          <End Type="importModel.service" Role="service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_partners_empresa">
+          <End Type="importModel.empresa" Role="empresa" Multiplicity="1" />
+          <End Type="importModel.partner" Role="partner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="partner">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="quiene">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tittle" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="empresa" Relationship="importModel.FK_emp_who_empresa11" FromRole="quiene" ToRole="empresa" />
+        </EntityType>
+        <Association Name="FK_emp_who_empresa11">
+          <End Type="importModel.empresa" Role="empresa" Multiplicity="1" />
+          <End Type="importModel.quiene" Role="quiene" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="quiene">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="slider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IdMarca" Type="Int32" />
+          <NavigationProperty Name="marca" Relationship="importModel.FK_slider_marcas" FromRole="slider" ToRole="marca" />
+        </EntityType>
+        <Association Name="FK_slider_marcas">
+          <End Type="importModel.marca" Role="marca" Multiplicity="0..1" />
+          <End Type="importModel.slider" Role="slider" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marca">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="slider">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="imageMarca">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdMarca" Type="Int32" />
+          <NavigationProperty Name="marca" Relationship="importModel.FK_imageMarca_marcas" FromRole="imageMarca" ToRole="marca" />
+        </EntityType>
+        <Association Name="FK_imageMarca_marcas">
+          <End Type="importModel.marca" Role="marca" Multiplicity="0..1" />
+          <End Type="importModel.imageMarca" Role="imageMarca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marca">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="imageMarca">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="importModelStoreContainer" CdmEntityContainer="importEntities">
+          <EntitySetMapping Name="contacts">
+            <EntityTypeMapping TypeName="importModel.contact">
+              <MappingFragment StoreEntitySet="contact">
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Skype" ColumnName="Skype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empresas">
+            <EntityTypeMapping TypeName="importModel.empresa">
+              <MappingFragment StoreEntitySet="empresa">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="marcas">
+            <EntityTypeMapping TypeName="importModel.marca">
+              <MappingFragment StoreEntitySet="marcas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="partners">
+            <EntityTypeMapping TypeName="importModel.partner">
+              <MappingFragment StoreEntitySet="partners">
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="importModel.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="services">
+            <EntityTypeMapping TypeName="importModel.service">
+              <MappingFragment StoreEntitySet="services">
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="socials">
+            <EntityTypeMapping TypeName="importModel.social">
+              <MappingFragment StoreEntitySet="socials">
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="font" ColumnName="font" />
+                <ScalarProperty Name="link" ColumnName="link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quienes">
+            <EntityTypeMapping TypeName="importModel.quiene">
+              <MappingFragment StoreEntitySet="quienes">
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Tittle" ColumnName="Tittle" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sliders">
+            <EntityTypeMapping TypeName="importModel.slider">
+              <MappingFragment StoreEntitySet="slider">
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="imageMarcas">
+            <EntityTypeMapping TypeName="importModel.imageMarca">
+              <MappingFragment StoreEntitySet="imageMarca">
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

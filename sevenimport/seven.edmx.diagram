@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7727a8c61c3543e5b28072bfba670095" Name="Diagram1">
+        <EntityTypeShape EntityType="importModel.contact" Width="1.5" PointX="0.875" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="importModel.empresa" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="importModel.marca" Width="1.5" PointX="3.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="importModel.partner" Width="1.5" PointX="2.875" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="importModel.product" Width="1.5" PointX="6.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="importModel.service" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="importModel.social" Width="1.5" PointX="8.375" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="importModel.FK_marcas_empresa" ManuallyRouted="false" />
+        <AssociationConnector Association="importModel.FK_products_marcas" ManuallyRouted="false" />
+        <AssociationConnector Association="importModel.FK_contact_marcas" />
+        <AssociationConnector Association="importModel.FK_socials_marcas" />
+        <AssociationConnector Association="importModel.FK_services_empresa" />
+        <AssociationConnector Association="importModel.FK_partners_empresa" />
+        <EntityTypeShape EntityType="importModel.quiene" Width="1.5" PointX="2.75" PointY="9.875" />
+        <AssociationConnector Association="importModel.FK_emp_who_empresa11" />
+        <EntityTypeShape EntityType="importModel.slider" Width="1.5" PointX="5.375" PointY="7.75" />
+        <AssociationConnector Association="importModel.FK_slider_marcas" />
+        <EntityTypeShape EntityType="importModel.imageMarca" Width="1.5" PointX="7.375" PointY="7.75" />
+        <AssociationConnector Association="importModel.FK_imageMarca_marcas" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

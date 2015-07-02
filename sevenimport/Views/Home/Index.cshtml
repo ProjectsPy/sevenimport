@@ -1,0 +1,351 @@
+﻿
+@model sevenimport.ModelsViews.IndexPortada
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<section class="slice white ">
+    <div class="container" style="">
+        <!-- Importing slider content -->
+        <section id="slider-wrapper" class="layer-slider-wrapper" style="">
+            <div id="layerslider" style="width:100%;height:520px;">
+                <div class="ls-slide" data-ls="transition2d:1;timeshift:-1000;">
+                    <!-- slide background -->
+                    <img src="Images/adammilo.jpg" class="ls-bg" alt="Slide background" />
+                    @foreach (var item in Model.Sliders)
+                    {
+                        if (item.Id == 1)
+                        {
+                            <h3 class="ls-l title text-wrapped alpha c-black text-uppercase text-center" style="top:35%; left:0; padding: 30px;" data-ls="offsetxin:-250;offsetyin:0;durationin:1000;delayin:500;offsetxout:0;offsetyout:-8;easingout:easeInOutQuart;scalexout:1.2;scaleyout:1.2;">
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </h3>
+
+                            <p class="ls-l text-standard text-wrapped black c-white" style="width:500px; top:65%; left:0; padding: 30px;" data-ls="offsetxin:-250;offsetyin:-;durationin:1000;delayin:1000;offsetxout:0;offsetyout:-8;easingout:easeInOutQuart;scalexout:1.2;scaleyout:1.2;">
+                                @Html.DisplayFor(modelItem => item.Description)
+
+
+                            </p>
+                            <a href="http://adam-milo.com.py" class="btn btn-base btn-lg ls-l" style="top:80%; left:850px;" data-ls="offsetxin:0;offsetyin:250;durationin:1500;delayin:1500;offsetxout:0;offsetyout:-8;easingout:easeInOutQuart;scalexout:1.2;scaleyout:1.2;" target="_blank">
+                                <span>Visitanos en nuestra Web</span>
+                            </a>
+                        }
+
+                    }
+                    <!-- Left Text -->
+                    @*<h3 class="ls-l title text-wrapped alpha c-black text-uppercase text-center" style="top:35%; left:0; padding: 30px;" data-ls="offsetxin:-250;offsetyin:0;durationin:1000;delayin:500;offsetxout:0;offsetyout:-8;easingout:easeInOutQuart;scalexout:1.2;scaleyout:1.2;">
+                        Adam Milo
+                    </h3>
+
+                    <p class="ls-l text-standard text-wrapped black c-white" style="width:500px; top:65%; left:0; padding: 30px;" data-ls="offsetxin:-250;offsetyin:-;durationin:1000;delayin:1000;offsetxout:0;offsetyout:-8;easingout:easeInOutQuart;scalexout:1.2;scaleyout:1.2;">
+                        We love every form of art. That's why our goal is to make Boomerang more than a template. A piece of art ready to express your ideas in a unique style. Beacause of our passion of making things simpler, we created all this project in a manner that will ease your work and will give you the feeling of creating something big everytime you will bring soemething new to it.
+                    </p>
+                    <a href="http://adam-milo.com.py" class="btn btn-base btn-lg ls-l" style="top:80%; left:850px;" data-ls="offsetxin:0;offsetyin:250;durationin:1500;delayin:1500;offsetxout:0;offsetyout:-8;easingout:easeInOutQuart;scalexout:1.2;scaleyout:1.2;" target="_blank">
+                        <span>Visitanos en nuestra Web</span>
+                    </a>*@
+                </div>
+                <div class="ls-slide" data-ls="transition2d:1;timeshift:-1000;">
+                    <!-- slide background -->
+                    <img src="Images/bg-provision2.jpg" class="ls-bg" alt="Slide background" />
+
+                    <!-- Left Text -->
+                    @*<h3 class="ls-l title text-wrapped alpha c-black text-uppercase text-center" style="top:35%; left:0; padding: 30px;" data-ls="offsetxin:-250;offsetyin:0;durationin:1000;delayin:500;offsetxout:0;offsetyout:-8;easingout:easeInOutQuart;scalexout:1.2;scaleyout:1.2;">
+                            Provision ISR
+                        </h3>*@
+
+                    <p class="ls-l text-standard text-wrapped black c-white" style="width:500px; top:65%; left:0; padding: 30px;" data-ls="offsetxin:-250;offsetyin:-;durationin:1000;delayin:1000;offsetxout:0;offsetyout:-8;easingout:easeInOutQuart;scalexout:1.2;scaleyout:1.2;">
+                        Provision- ISR, an Israeli brand, was created to answer the market need for reliable high quality CCTV middle - range products at competitive
+                        prices together with accessible, professional after sales support, good documentation and strong marketing, all from a company which
+                        understands the business of CCTV.
+                    </p>
+                    <a href="http://provision.com.py" class="btn btn-base btn-lg ls-l" style="top:80%; left:850px;" data-ls="offsetxin:0;offsetyin:250;durationin:1500;delayin:1500;offsetxout:0;offsetyout:-8;easingout:easeInOutQuart;scalexout:1.2;scaleyout:1.2;" target="_blank">
+                        <span>Visitanos en nuestra Web</span>
+                        @*@Html.ActionLink("","","")*@
+                    </a>
+
+                </div>
+                <div id="empresa"></div>
+
+            </div>
+        </section>
+    </div>
+</section>
+
+
+
+
+}
+
+
+
+<section class="slice base">
+    <div class="wp-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6 ">
+                    <div class="icon-block icon-block-1">
+                        <div class="icon-block-item">
+                            <i class="fa fa-list-alt"></i>
+                        </div>
+                        <div class="icon-block-body">
+                            @foreach (var item in Model.Quienes)
+                            {
+                                if (item.Id == 1)
+                                {
+                                    <h4 class="c-white">@Html.DisplayFor(modelItem => item.Tittle)</h4>
+                                    <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                                }
+                            }
+                                
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 ">
+                    <div class="icon-block icon-block-1">
+                        <div class="icon-block-item">
+                            <i class="fa fa-file"></i>
+                        </div>
+                        <div class="icon-block-body">
+                            @foreach (var item in Model.Quienes)
+                            {
+                                if (item.Id ==2)
+                                {
+                                    <h4 class="c-white">@Html.DisplayFor(modelItem => item.Tittle)</h4>
+                                    <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                                }
+                            }
+                       
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 ">
+                    <div class="icon-block icon-block-1">
+                        <div class="icon-block-item">
+                            <i class="fa fa-coffee"></i>
+                        </div>
+                        <div class="icon-block-body">
+                            @foreach (var item in Model.Quienes)
+                            {
+                                if (item.Id == 3)
+                                {
+                                    <h4 class="c-white">@Html.DisplayFor(modelItem => item.Tittle)</h4>
+                                    <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                                }
+                            }
+                            @*<h4 class="c-white">Valores</h4>
+                            <ul>
+                                <li>Innovacion</li>
+                                <li>Calidad</li>
+                                <li>Compromiso</li>
+                                <li id="servicios">Responsabilidad</li>
+
+                            </ul>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="slice bg-white bb">
+    <div class="wp-section">
+        <div class="container">
+            <div class="section-title-wr">
+                <h3 class="section-title center">
+                    <span>Nuestros Servicios</span>
+                </h3>
+            </div>
+          
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="wp-block icon-square arrow-down">
+                        <div class="img-icon-wrapper">
+                            <div class="img-icon">
+                                <img src="Images/calendar.svg" alt="Clipboard" class="img-responsive img-center">
+                            </div>
+                        </div>
+                        <div class="wp-block-body">
+
+                            @foreach (var item in Model.Services)
+                            {
+                                if (item.Id == 5)
+                                {
+                                    <h1>@Html.DisplayFor(modelItem => item.Name)</h1>
+                                    <p class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </p>
+                                }
+
+                            }
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="wp-block icon-square arrow-down">
+                        <div class="img-icon-wrapper">
+                            <div class="img-icon">
+                                <img src="Images/map.svg" alt="Clipboard" class="img-responsive img-center">
+                            </div>
+                        </div>
+                        <div class="wp-block-body">
+                            @foreach (var item in Model.Services)
+                            {
+                                if (item.Id == 6)
+                                {
+                                    <h1>@Html.DisplayFor(modelItem => item.Name)</h1>
+                                    <p class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </p>
+                                }
+
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="wp-block icon-square arrow-down">
+                        <div class="img-icon-wrapper">
+                            <div class="img-icon">
+                                <img src="Images/gift-box.svg" alt="Clipboard" class="img-responsive img-center">
+                            </div>
+                        </div>
+                        <div class="wp-block-body">
+                            @foreach (var item in Model.Services)
+                            {
+                                if (item.Id == 7)
+                                {
+                                    <h1>@Html.DisplayFor(modelItem => item.Name)</h1>
+                                    <p class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </p>
+                                }
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+@*<section class="prlx-bg inset-shadow-1" data-stellar-ratio="2" style="min-height: 500px; height: auto; padding: 30px 0; background-image: url(../Images/full-bg-11.jpg)">
+    <!-- Section mask -->
+    <div class="mask mask-1"></div>
+    <div class="container">
+        <div class="section-title-wr">
+            <h3 class="section-title center">
+                <span class="c-white">Contact our agency</span>
+                <small class="c-white">Lorem ipsum dolor sit amet</small>
+            </h3>
+        </div>
+
+        <!-- Contact form -->
+        <form class="form-dark">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-lg">
+                        <label class="sr-only">First name</label>
+                        <input type="text" class="form-control input-lg" placeholder="First name" hidefocus="true">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-lg">
+                        <label class="sr-only">Last name</label>
+                        <input type="text" class="form-control input-lg" placeholder="Last name" hidefocus="true">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-lg">
+                        <label class="sr-only">E-mail</label>
+                        <input type="email" class="form-control input-lg" placeholder="E-mail" hidefocus="true">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="sr-only">Message</label>
+                        <textarea class="form-control" placeholder="Message ..." rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a href="#" class="btn btn-lg btn-dark" title="">
+                        <span>Send message</span>
+                    </a>
+                </div>
+            </div>
+        </form>
+
+        <!-- Social Media Icons -->
+        <div class="social-media social-media-lg text-center mt-40">
+            <a href="#"><i class="fa fa-facebook facebook"></i></a>
+            <a href="#"><i class="fa fa-google-plus google"></i></a>
+            <a href="#"><i class="fa fa-twitter twitter"></i></a>
+        </div>
+    </div>
+</section>*@
+
+<section class="slice bg-white">
+    <div class="wp-section">
+        <div class="container">
+            <div class="section-title-wr">
+                <h3 class="section-title left"><span>Nuestros Partners</span></h3>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="client">
+                        <a href="#">
+                            <img src="Images/datix1.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="client">
+                        <a href="#">
+                            <img src="Images/Provision.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="client">
+                        <a href="#">
+                            <img src="images/espetrotec.jpg" alt="">
+                        </a> 
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="client">
+                        <a href="#">
+                            <img src="images/idteck.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="client">
+                        <a href="#">
+                            <img src="images/Mobileye.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="client">
+                        <a href="#">
+                            <img src="images/Visonic.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
