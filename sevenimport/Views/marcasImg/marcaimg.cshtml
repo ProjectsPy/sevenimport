@@ -1,10 +1,4 @@
-﻿@model IEnumerable<sevenimport.service>
-
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
+﻿@model IEnumerable<sevenimport.Models.ItemModel>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -15,12 +9,11 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.IdImagen)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Image)
         </th>
-
         <th></th>
     </tr>
 
@@ -30,7 +23,7 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
+            @Html.DisplayFor(modelItem => item.IdImagen)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Image)
@@ -44,18 +37,3 @@
 }
 
 </table>
-
-<div class="box-element base">
-    <div class="row">
-        <div class="col-md-8">
-            <h1>
-                Volver a la página de Administración.
-            </h1>
-        </div>
-        <div class="col-md-4">
-            <div class="btn btn-b-white btn-lg pull-right">
-                @Html.ActionLink("Admin", "Admin", "Home")
-            </div>
-        </div>
-    </div>
-</div>

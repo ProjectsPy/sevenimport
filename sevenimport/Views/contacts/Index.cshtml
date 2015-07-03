@@ -7,33 +7,6 @@
 
 
 
-@*@foreach (var item in Model.Contacts)
-{
-    <h5><i class="fa fa-map-marker">@Html.DisplayNameFor(model => item.Address)</i></h5>
-    <p>@Html.DisplayFor(modelItem => item.Address)</p>
-
-    <h5><i class="fa fa-mail-forward">@Html.DisplayNameFor(model => item.Email)</i></h5>
-    <p>@Html.DisplayFor(modelItem => item.Email)</p>
-
-
-    <h5><i class="fa fa-phone">@Html.DisplayNameFor(model => item.Phone)</i></h5>
-    <p>@Html.DisplayFor(modelItem => item.Phone)</p>
-}*@
-
-
-
-@*@foreach (var item in Model.Socials)
-{
-    <h5><i class="fa fa-map-marker">@Html.DisplayNameFor(model => item.Description)</i></h5>
-    <p>@Html.DisplayFor(modelItem => item.Name)</p>
-
-    <h5><i class="fa fa-mail-forward">@Html.DisplayNameFor(model => item.Description)</i></h5>
-    <p>@Html.DisplayFor(modelItem => item.Name)</p>
-
-
-    <h5><i class="fa fa-phone">@Html.DisplayNameFor(model => item.Description)</i></h5>
-    <p>@Html.DisplayFor(modelItem => item.Name)</p>
-}*@
 
 
 
@@ -148,7 +121,7 @@
                     </p>
                     <div class="social-media">
 
-                        @foreach (var item in Model.Socials)
+                        @*@foreach (var item in Model.Socials)
                         {
                             <h5><i class="fa fa-map-marker">@Html.DisplayNameFor(model => item.Description)</i></h5>
                             <p>@Html.DisplayFor(modelItem => item.Name)</p>
@@ -159,7 +132,7 @@
 
                             <h5><i class="fa fa-phone">@Html.DisplayNameFor(model => item.Description)</i></h5>
                             <p>@Html.DisplayFor(modelItem => item.Name)</p>
-                        }
+                        }*@
 
 
                         @*@Html.Partial("~/social/redes")*@
@@ -172,3 +145,5 @@
         </div>
     </div>
 </section>
+
+

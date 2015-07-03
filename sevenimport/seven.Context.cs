@@ -35,5 +35,7 @@ namespace sevenimport
         public virtual DbSet<quiene> quienes { get; set; }
         public virtual DbSet<slider> sliders { get; set; }
         public virtual DbSet<imageMarca> imageMarcas { get; set; }
+
+        public System.Data.Entity.DbSet<sevenimport.Models.ItemModel> ItemModels { get; set; }
     }
 }

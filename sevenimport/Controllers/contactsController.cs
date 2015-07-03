@@ -21,7 +21,7 @@ namespace sevenimport.Controllers
             //return View(db.contacts.ToList());
             var viewModel = new ContacSocials();
             viewModel.Contacts = db.contacts;
-            viewModel.Socials = db.socials;
+            //viewModel.Socials = db.socials;
 
             return View(viewModel);
         }
