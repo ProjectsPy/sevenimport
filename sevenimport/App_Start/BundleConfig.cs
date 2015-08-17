@@ -17,7 +17,7 @@ namespace sevenimport
             //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
             //            "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/css").Include(
+            bundles.Add(new StyleBundle("~/css/styles").Include(
                 "~/css/bootstrap.css",
                 "~/css/owlcarousel.css",
                 "~/css/owltheme.css",
@@ -26,7 +26,7 @@ namespace sevenimport
                 "~/css/layerslider.css"
                 ));
 
-            bundles.Add(new StyleBundle("~/font").Include(
+            bundles.Add(new StyleBundle("~/fontawesome/css/font").Include(
                 "~/fontawesome/css/fontawesome.css"
                 ));
 
@@ -38,6 +38,8 @@ namespace sevenimport
                       "~/js/greensock.js",
                       "~/js/layerslidertransitions.js",
                       "~/js/layersliderkreaturamedia.js"));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

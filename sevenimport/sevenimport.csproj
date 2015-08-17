@@ -187,6 +187,7 @@
     <Compile Include="marca.cs">
       <DependentUpon>seven.tt</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelsViews\ContacSocials.cs" />
     <Compile Include="ModelsViews\IndexPortada.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -256,6 +257,7 @@
     <Content Include="Images\bg-provision2.jpg" />
     <Content Include="Images\calendar.svg" />
     <Content Include="Images\datix1.jpg" />
+    <Content Include="Images\device-3.png" />
     <Content Include="Images\Encabezado7C_.jpg" />
     <Content Include="Images\espetrotec.jpg" />
     <Content Include="Images\full-bg-11.jpg" />
@@ -317,7 +319,9 @@
     <Content Include="fontawesome\scss\_variables.scss" />
     <Content Include="Scripts\jquery-1.11.2.js" />
     <Content Include="bdscript.txt" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -418,6 +422,8 @@
     <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\marcasImg\Index.cshtml" />
     <Content Include="Views\marcasImg\marcaimg.cshtml" />
+    <None Include="Properties\PublishProfiles\7cimport - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\7cimport - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -70,11 +70,12 @@ namespace sevenimport.Controllers
                     imageMarca image = new imageMarca
                     {
                         Name = System.IO.Path.GetFileName(fileUpload[i].FileName),
-                        Id = id
+                        IdMarca = id
                     };
                     using (var reader = new System.IO.BinaryReader(fileUpload[i].InputStream))
                     {
                         image.Imagen = reader.ReadBytes(fileUpload[i].ContentLength);
+                        image.Id = marca.Id;
                         db.imageMarcas.Add(image);
                         db.SaveChanges();
                     }

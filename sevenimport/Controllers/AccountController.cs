@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using sevenimport.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace sevenimport.Controllers
 {
@@ -22,10 +23,17 @@ namespace sevenimport.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
             UserManager = userManager;
             SignInManager = signInManager;
+        }
+
+        public AccountController(UserManager<ApplicationUser> userManager)
+        {
+            // TODO: Complete member initialization
+            this.userManager = userManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -426,6 +434,7 @@ namespace sevenimport.Controllers
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
+        private UserManager<ApplicationUser> userManager;
 
         private IAuthenticationManager AuthenticationManager
         {
